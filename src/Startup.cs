@@ -32,9 +32,7 @@ namespace CoreCodeCamp
                 opt.AssumeDefaultVersionWhenUnspecified = true;
                 opt.DefaultApiVersion = new ApiVersion(1, 1);
                 opt.ReportApiVersions = true;
-                opt.ApiVersionReader = ApiVersionReader.Combine(
-                    new HeaderApiVersionReader("X-Version"),
-                    new QueryStringApiVersionReader("v", "ver", "version"));
+                opt.ApiVersionReader = new UrlSegmentApiVersionReader();
 
                 opt.Conventions.Controller<TalksController>()
                     .HasApiVersion(new ApiVersion(1, 0))
